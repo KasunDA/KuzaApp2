@@ -32,4 +32,6 @@
     <string name="name">Name</string>
     <string name="phonenumber">PhoneNumber</string>
     <string name="register">Register</string>
+    <string name="me_busca">Welcome </string>
+    <string name="image">Farm Image</string>
 </resources>

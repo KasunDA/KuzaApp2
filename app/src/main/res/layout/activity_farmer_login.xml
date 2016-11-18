@@ -57,7 +57,8 @@
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
                     android:inputType=""
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    tools:ignore="TextFields" />
 
             </android.support.design.widget.TextInputLayout>
 
