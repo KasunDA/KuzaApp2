@@ -34,4 +34,17 @@
     <string name="register">Register</string>
     <string name="me_busca">Welcome </string>
     <string name="image">Farm Image</string>
+    <string name="get_farm_products">Get Farm Products</string>
+    <string name="enter_your_location">Enter your location</string>
+    <string name="welcome">Welcome</string>
+    <string name="enter_your_name">enter_your_name</string>
+    <string name="exit">exit</string>
+    <string name="farming_type">farming_type</string>
+    <string name="fish_farming">fish_farming</string>
+    <string name="maize_farming">maize_farming</string>
+    <string name="question">question</string>
+    <string name="submit">submit</string>
+    <string name="type_your_question_here">type_your_question_here</string>
+    <string name="your_email">your_email</string>
+    <string name="your_phone_number">your_phone_number</string>
 </resources>
