@@ -20,7 +20,7 @@
                 <gradient
                     android:color="@android:color/transparent"
                     android:angle="0"
-                    android:startColor="@color/colorPrimary"
+                    android:startColor="@color/splashback"
                     android:type="sweep"
                     android:useLevel="false"/>
             </shape>

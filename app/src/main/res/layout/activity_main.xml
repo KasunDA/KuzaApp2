@@ -13,9 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/view_products"
-        android:id="@+id/buttonViewProducts"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/buttonViewProducts" />
 
     <Button
         android:layout_width="wrap_content"
