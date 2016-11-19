@@ -1,5 +1,6 @@
 package com.example.nelson.kuzaapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,7 +19,6 @@ import android.widget.Toast;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -27,24 +27,21 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
+
 
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText editTextName;//(EditText)findViewById(R.id.editTextName);
-    EditText editTextLocation;//(EditText)findViewById(R.id.editTextLocation);
-    EditText editTextPhoneNumber;//=(EditText)findViewById(R.id.editTextPhoneNumber);
-    EditText editTextIdNumber;//=(EditText)findViewById(R.id.editTextPhoneNumber);
-    String name;// = editTextName.getText().toString();
-    String location;// = editTextLocation.getText().toString();
-    String phoneNumber;// =editTextPhoneNumber.getText().toString();
-    String idNumber;// =editTextIdNumber.getText().toString();
+    EditText editTextName;
+    EditText editTextLocation;
+    EditText editTextPhoneNumber;
+    EditText editTextIdNumber;
+    String name;
+    String location;
+    String phoneNumber;
+    String idNumber;
 
 
     InputStream is=null;
@@ -52,28 +49,25 @@ public class RegisterActivity extends AppCompatActivity {
     String line=null;
     int code;
 
+    Button buttonSaveFarmerDetails;
+    private ProgressDialog pDialog;
 
-    Button buttonSaveFarmerDetails;//=(Button)findViewById(R.id.buttonSaveFarmerDetails);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-         editTextName=(EditText)findViewById(R.id.editTextName);
-         editTextLocation=(EditText)findViewById(R.id.editTextLocation);
-         editTextPhoneNumber=(EditText)findViewById(R.id.editTextPhoneNumber);
-         editTextIdNumber=(EditText)findViewById(R.id.editTextPhoneNumber);
+        editTextName=(EditText)findViewById(R.id.editTextName);
+        editTextLocation=(EditText)findViewById(R.id.editTextLocation);
+        editTextPhoneNumber=(EditText)findViewById(R.id.editTextPhoneNumber);
+        editTextIdNumber=(EditText)findViewById(R.id.editTextIdNumber);
         buttonSaveFarmerDetails=(Button)findViewById(R.id.buttonSaveFarmerDetails);
         buttonSaveFarmerDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              /* Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-               startActivity(intent);*/
                 GetDataFromEditText();
-
                 new InsertData().execute();
-
             }
         });
 
@@ -89,6 +83,16 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     class InsertData extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(RegisterActivity.this);
+            pDialog.setMessage("Saving your data..please wait...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
         @Override
         protected String doInBackground(String... params) {
             try{
@@ -147,6 +151,7 @@ public class RegisterActivity extends AppCompatActivity {
                         {
                             public void run()
                             {
+                                pDialog.dismiss();
                                 Toast.makeText(getBaseContext(), "Farmer registered Successfully",
                                         Toast.LENGTH_SHORT).show();
                             }

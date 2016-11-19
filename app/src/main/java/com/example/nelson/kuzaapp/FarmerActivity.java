@@ -1,5 +1,6 @@
 package com.example.nelson.kuzaapp;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ public class FarmerActivity extends AppCompatActivity {
     InputStream is=null;
     String result=null;
     String line=null;
+    String  idNumber;
     int code;
 
     @Override
@@ -48,7 +50,8 @@ public class FarmerActivity extends AppCompatActivity {
         buttonAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              GetDataFromEditText();
+                idNumber= getIntent().getStringExtra("idNumber");
+                GetDataFromEditText();
                 new InsertFarmProductData().execute();
             }
         });
@@ -64,11 +67,21 @@ public class FarmerActivity extends AppCompatActivity {
 
     }
     class InsertFarmProductData extends AsyncTask<String, Void, String> {
+        private ProgressDialog pDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(FarmerActivity.this);
+            pDialog.setMessage("Adding your item..please wait...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
         @Override
         protected String doInBackground(String... params) {
             try{
                 ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-                nameValuePairs.add(new BasicNameValuePair("idNumber", "123"));
+                nameValuePairs.add(new BasicNameValuePair("idNumber", idNumber));
                 nameValuePairs.add(new BasicNameValuePair("farmProduct", farmProduct));
                 nameValuePairs.add(new BasicNameValuePair("unit", unit));
                 nameValuePairs.add(new BasicNameValuePair("unitPrice", unitPrice));
@@ -121,6 +134,7 @@ public class FarmerActivity extends AppCompatActivity {
                         {
                             public void run()
                             {
+                                pDialog.dismiss();
                                 Toast.makeText(getBaseContext(), "Your Item has been added",
                                         Toast.LENGTH_SHORT).show();
                             }

@@ -1,5 +1,6 @@
 package com.example.nelson.kuzaapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -41,6 +42,7 @@ public class FarmerLoginActivity extends AppCompatActivity {
     String result=null;
     String line=null;
     int code;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,15 @@ public class FarmerLoginActivity extends AppCompatActivity {
         idNumber=editTextIdNumber.getText().toString();
     }
     class Login extends AsyncTask<String, Void, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(FarmerLoginActivity.this);
+            pDialog.setMessage("Logging in..please wait...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
         @Override
         protected String doInBackground(String... params) {
             try{
@@ -125,8 +136,10 @@ public class FarmerLoginActivity extends AppCompatActivity {
                         {
                             public void run()
                             {
-                               // Toast.makeText(getBaseContext(), "Farmer registered Successfully",Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(getBaseContext(), "Farmer registered Successfully",Toast.LENGTH_SHORT).show();
+                                pDialog.dismiss();
                                 Intent intent = new Intent(getApplicationContext(), FarmerActivity.class);
+                                intent.putExtra("idNumber",idNumber);
                                 startActivity(intent);
                             }
                         });

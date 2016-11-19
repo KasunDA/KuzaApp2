@@ -16,15 +16,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/logoo"
-            android:layout_marginTop="-500dip"
             android:contentDescription="@string/logo"
-            />
+android:paddingBottom="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
 <!--Make query button-->
         <Button
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
             android:text="@string/make_farming_query"
             android:id="@+id/buttonAskExpert"
             android:layout_alignParentTop="true"
