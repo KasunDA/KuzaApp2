@@ -47,4 +47,11 @@
     <string name="type_your_question_here">type_your_question_here</string>
     <string name="your_email">your_email</string>
     <string name="your_phone_number">your_phone_number</string>
+    <string name="farmer_login1">Farmer Login</string>
+    <string name="farmer_registration1">Farmer Registration</string>
+    <string name="like_us_on_facebook">Like us on Facebook</string>
+    <string name="view_products1">View Products</string>
+    <string name="follow_us_on_twitter">follow us on twitter</string>
+    <string name="make_farming_query">make Farming Query</string>
+    <string name="logo">Be smart logo</string>
 </resources>
