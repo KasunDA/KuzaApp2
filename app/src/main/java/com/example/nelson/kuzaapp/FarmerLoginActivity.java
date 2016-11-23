@@ -92,7 +92,7 @@ public class FarmerLoginActivity extends AppCompatActivity {
                 {
 
                     HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppost = new HttpPost("http://elearning2.maseno.ac.ke/kuzaAppConnect/login.php");
+                    HttpPost httppost = new HttpPost("http://bsmartkuza.com/kuzaAppConnect/login.php");
                     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                     HttpResponse response = httpclient.execute(httppost);
                     HttpEntity entity = response.getEntity();

@@ -12,28 +12,31 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="com.example.nelson.kuzaapp.MainActivity">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/logoo"
-            android:contentDescription="@string/logo"
-android:paddingBottom="12dp"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
-<!--Make query button-->
+        <!--Logo image at the top-->
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:src="@drawable/logoo"
+    android:layout_marginTop="16dp"
+    android:id="@+id/logo"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentEnd="true"
+    android:contentDescription="@string/logo"
+    />
+        <!--Make query button -->
         <Button
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/logo"
             android:text="@string/make_farming_query"
             android:id="@+id/buttonAskExpert"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
+            android:layout_alignLeft="@+id/logo"
+            android:layout_alignStart="@+id/logo"
             />
-        <!--View products Button-->
+        <!--View Products Button-->
         <Button
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
@@ -45,7 +48,7 @@ android:paddingBottom="12dp"
             android:layout_alignLeft="@+id/buttonAskExpert"
             android:layout_alignStart="@+id/buttonAskExpert"
             />
-<!--Farmer Login button-->
+<!--Farmer Login Button-->
         <Button
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
@@ -56,7 +59,7 @@ android:paddingBottom="12dp"
             android:layout_below="@+id/buttonViewProducts"
             android:layout_alignLeft="@+id/buttonViewProducts"
             android:layout_alignStart="@+id/buttonViewProducts" />
-<!--Farmer registration-->
+<!-- Farmer Registration Button-->
         <Button
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
@@ -67,7 +70,7 @@ android:paddingBottom="12dp"
             android:layout_below="@+id/buttonFarmerLogin"
             android:layout_alignLeft="@+id/buttonFarmerLogin"
             android:layout_alignStart="@+id/buttonFarmerLogin" />
-<!-- Twitter button-->
+<!--Tweeter Button-->
         <Button
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
@@ -78,7 +81,7 @@ android:paddingBottom="12dp"
             android:layout_below="@+id/buttonRegisterFarmer"
             android:layout_alignLeft="@+id/buttonRegisterFarmer"
             android:layout_alignStart="@+id/buttonRegisterFarmer" />
-<!--Facebook button-->
+<!--Facebook Button-->
         <Button
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"

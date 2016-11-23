@@ -90,7 +90,7 @@ public class FarmerActivity extends AppCompatActivity {
                 {
 
                     HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppost = new HttpPost("http://elearning2.maseno.ac.ke/kuzaAppConnect/add_farm_product.php");
+                    HttpPost httppost = new HttpPost("http://bsmartkuza.com/kuzaAppConnect/add_farm_product.php");
                     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                     HttpResponse response = httpclient.execute(httppost);
                     HttpEntity entity = response.getEntity();

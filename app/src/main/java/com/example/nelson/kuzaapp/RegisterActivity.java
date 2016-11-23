@@ -107,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
                 {
 
                     HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppost = new HttpPost("http://elearning2.maseno.ac.ke/kuzaAppConnect/register.php");
+                    HttpPost httppost = new HttpPost("http://bsmartkuza.com/kuzaAppConnect/register.php");
                     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                     HttpResponse response = httpclient.execute(httppost);
                     HttpEntity entity = response.getEntity();

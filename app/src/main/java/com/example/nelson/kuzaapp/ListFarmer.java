@@ -35,7 +35,7 @@ public class ListFarmer extends AppCompatActivity {
         InputStream is = null;
         try {
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://elearning2.maseno.ac.ke/kuzaAppConnect/getFamers.php");
+            HttpPost httppost = new HttpPost("http://bsmartkuza.com/kuzaAppConnect/getFamers.php");
             HttpResponse response = httpclient.execute(httppost);
             HttpEntity entity = response.getEntity();
             is = entity.getContent();

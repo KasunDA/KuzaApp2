@@ -34,10 +34,12 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-
+//import com.squareup.okhttp.OkHttpClient;
+//import com.squareup.okhttp.Request;
+//import com.squareup.okhttp.Response;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 public class ViewSellers extends AppCompatActivity {
 
     ListView sellersLV;
@@ -50,7 +52,7 @@ public class ViewSellers extends AppCompatActivity {
     // JSONParseer jParser = new JSONParseer();
     // ArrayList<HashMap<String, String>> productsList;
     // url to get all products list
-    private static String url_get_sellers = "http://elearning2.maseno.ac.ke/kuzaAppConnect/getSellers.php";
+    private static String url_get_sellers = "http://bsmartkuza.com/kuzaAppConnect/getSellers.php";
 
     // JSON Node names
     private final String TAG_SUCCESS = "success";
