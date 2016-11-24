@@ -101,7 +101,7 @@ public class ViewSellers extends AppCompatActivity {
             pDialog = new ProgressDialog(ViewSellers.this);
             pDialog.setMessage("retrieving products. Please wait...");
             pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
+            pDialog.setCancelable(true);
             pDialog.show();
         }
 
@@ -114,7 +114,7 @@ public class ViewSellers extends AppCompatActivity {
                 // nameValuePairs.add(new BasicNameValuePair("name", ""));
                 // nameValuePairs.add(new BasicNameValuePair("location", ""));
 
-                String url = "http://elearning2.maseno.ac.ke/kuzaAppConnect/getSellers.php";
+                String url = "http://bsmartkuza.com/kuzaAppConnect/getSellers.php";
 
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder().url(url.trim()).build();

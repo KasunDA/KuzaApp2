@@ -54,4 +54,7 @@
     <string name="follow_us_on_twitter">follow us on twitter</string>
     <string name="make_farming_query">make Farming Query</string>
     <string name="logo">Be smart logo</string>
+    <string name="name_sample">Enter image description</string>
+    <string name="imagetoupload">Image To Upload</string>
+    <string name="choose_image">Choose Image</string>
 </resources>
