@@ -1,51 +1,45 @@
 package com.example.nelson.kuzaapp;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONObject;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Map;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 
-public class FarmerActivity extends AppCompatActivity  {
-
-    String farmProduct, unit, unitPrice;
-    EditText editTextFarmProduct;
-    EditText editTextUnit;
-    EditText editTextUnitPrice;
-    Button buttonAddProduct;
-    private Button buttonChoose;
-
+public class FarmerActivity extends AppCompatActivity implements View.OnClickListener {
+    //Button varriables
+    private Button Choose;
+    private Button AddProduct;
+    private Button captureImage;
+    //ImageView variables
     private ImageView imageView;
-
-    private EditText editTextName;
+    //EditText varriables
+    private EditText FarmProduct;
+    private EditText Unit;
+    private EditText UnitPrice;
+    private EditText description;
 
     private Bitmap bitmap;
 
@@ -55,49 +49,27 @@ public class FarmerActivity extends AppCompatActivity  {
 
     private String KEY_IMAGE = "image";
     private String KEY_NAME = "name";
-    InputStream is = null;
-    String result = null;
-    String line = null;
-    String idNumber;
-    int code;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+    private String KEY_UNIT = ""
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_farmer);
-        editTextFarmProduct = (EditText) findViewById(R.id.editTextFarmProduct);
-        editTextUnit = (EditText) findViewById(R.id.editTextUnit);
-        editTextUnitPrice = (EditText) findViewById(R.id.editTextUnitPrice);
-        buttonAddProduct = (Button) findViewById(R.id.buttonAddProduct);
-        buttonAddProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                idNumber = getIntent().getStringExtra("idNumber");
-                GetDataFromEditText();
-                new InsertFarmProductData().execute();
-            }
-        });
+        setContentView(R.layout.activity_main);
 
-        buttonChoose = (Button) findViewById(R.id.buttonChoose);
-        editTextName = (EditText) findViewById(R.id.editText);
+        Choose = (Button) findViewById(R.id.Choose);
+        AddProduct = (Button) findViewById(R.id.AddProduct);
+        captureImage = (Button) findViewById(R.id.captureImage);
+
+        FarmProduct = (EditText) findViewById(R.id.FarmProduct);
+        Unit = (EditText) findViewById(R.id.Unit);
+        UnitPrice = (EditText) findViewById(R.id.UnitPrice);
+        description = (EditText) findViewById(R.id.description);
+
         imageView = (ImageView) findViewById(R.id.imageView);
-        buttonChoose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                showFileChooser();
-            }
-        });
-
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        Choose.setOnClickListener(this);
+        captureImage.setOnClickListener(this);
+        AddProduct.setOnClickListener(this);
     }
 
     private void showFileChooser() {
@@ -107,126 +79,88 @@ public class FarmerActivity extends AppCompatActivity  {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
-    public void GetDataFromEditText() {
-        farmProduct = editTextFarmProduct.getText().toString();
-        unit = editTextUnit.getText().toString();
-        unitPrice = editTextUnitPrice.getText().toString();
-
-    }
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Farmer Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
     @Override
-    public void onStart() {
-        super.onStart();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
-    }
-
-    class InsertFarmProductData extends AsyncTask<String, Void, String> {
-        private ProgressDialog pDialog;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pDialog = new ProgressDialog(FarmerActivity.this);
-            pDialog.setMessage("Adding your item..please wait...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri filePath = data.getData();
             try {
-                ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-                nameValuePairs.add(new BasicNameValuePair("idNumber", idNumber));
-                nameValuePairs.add(new BasicNameValuePair("farmProduct", farmProduct));
-                nameValuePairs.add(new BasicNameValuePair("unit", unit));
-                nameValuePairs.add(new BasicNameValuePair("unitPrice", unitPrice));
-
-                try {
-
-                    HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppost = new HttpPost("http://bsmartkuza.com/kuzaAppConnect/add_farm_product.php");
-                    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                    HttpResponse response = httpclient.execute(httppost);
-                    HttpEntity entity = response.getEntity();
-                    is = entity.getContent();
-
-                    Log.e("pass 1", "connection success ");
-                } catch (Exception e) {
-                    Log.e("Fail 1", e.toString());
-                    Toast.makeText(getApplicationContext(), "Invalid IP Address",
-                            Toast.LENGTH_LONG).show();
-                }
-
-                try {
-                    BufferedReader reader = new BufferedReader
-                            (new InputStreamReader(is, "iso-8859-1"), 8);
-                    StringBuilder sb = new StringBuilder();
-                    while ((line = reader.readLine()) != null) {
-                        sb.append(line + "\n");
-                    }
-                    is.close();
-                    result = sb.toString();
-                    Log.e("pass 2", "connection success ");
-                } catch (Exception e) {
-                    Log.e("Fail 2", e.toString());
-                }
-
-                try {
-                    JSONObject json_data = new JSONObject(result);
-                    code = (json_data.getInt("code"));
-
-                    if (code == 1) {
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                pDialog.dismiss();
-                                Toast.makeText(getBaseContext(), "Your Item has been added",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                    } else {
-                        Toast.makeText(getBaseContext(), "Sorry, Try Again",
-                                Toast.LENGTH_LONG).show();
-                    }
-                } catch (Exception e) {
-                    Log.e("Fail 3", e.toString());
-                }
-            } finally {
-
+                //Getting the Bitmap from Gallery
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                //Setting the Bitmap to ImageView
+                imageView.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            return null;
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v == Choose) {
+            showFileChooser();
+        }
+    }
+
+    public String getStringImage(Bitmap bmp) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
+    }
+
+    private void uploadImage() {
+        //Showing the progress dialog
+        final ProgressDialog loading = ProgressDialog.show(this, "Uploading...", "Please wait...", false, false);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UPLOAD_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        //Disimissing the progress dialog
+                        loading.dismiss();
+                        //Showing toast message of the response
+                        Toast.makeText(FarmerActivity.this, s, Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        //Dismissing the progress dialog
+                        loading.dismiss();
+
+                        //Showing toast
+                        Toast.makeText(FarmerActivity.this, volleyError.getMessage().toString(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                //Converting Bitmap to String
+                String image = getStringImage(bitmap);
+
+                //Getting Image Name and other data
+                String name = description.getText().toString().trim();
+                String product = FarmProduct.getText().toString().trim();
+                String unit = Unit.getText().toString().trim();
+                String unitPrice = UnitPrice.getText().toString().trim();
+
+                //Creating parameters
+                Map<String, String> params = new Hashtable<String, String>();
+
+                //Adding parameters
+                params.put(KEY_IMAGE, image);
+                params.put(KEY_NAME, name);
+
+                //returning parameters
+                return params;
+            }
+        };
+
+        //Creating a Request Queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        //Adding request to the queue
+        requestQueue.add(stringRequest);
+    }
 }

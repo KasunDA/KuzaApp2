@@ -14,39 +14,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/farm_product"
-        android:id="@+id/editTextFarmProduct"
-        android:layout_marginTop="40dp"
+        android:id="@+id/FarmProduct"
+        android:layout_marginTop="8dp"
         android:inputType="text" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/unit"
-        android:id="@+id/editTextUnit"
+        android:id="@+id/Unit"
         android:inputType="number"
-        android:layout_marginTop="16dp"/>
-
+        android:layout_marginTop="12dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/price_per_unit"
-        android:id="@+id/editTextUnitPrice"
+        android:id="@+id/UnitPrice"
        android:inputType="numberDecimal"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="12dp"/>
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/choose_image"
-        android:id="@+id/buttonChoose"
-         android:layout_marginTop="16dp"/>
-    <ImageView
-        android:layout_width="match_parent"
+        android:id="@+id/Choose"
+         android:layout_marginTop="12dp"/>
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/captureImage"
+        android:text="@string/select"
+        android:layout_marginTop="8dp"/>
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:id="@+id/imageView"
         android:contentDescription="@string/imagetoupload"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="12dp"/>
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/description"
         android:hint="@string/name_sample"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,9 +61,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/add_product"
-        android:id="@+id/buttonAddProduct"
-        android:layout_marginTop="16dp"
-       />
+        android:id="@+id/AddProduct"
+        android:layout_marginTop="12dp"/>
 
 </LinearLayout>
 </ScrollView>

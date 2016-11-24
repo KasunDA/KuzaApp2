@@ -57,4 +57,5 @@
     <string name="name_sample">Enter image description</string>
     <string name="imagetoupload">Image To Upload</string>
     <string name="choose_image">Choose Image</string>
+    <string name="select">Take a picture</string>
 </resources>
