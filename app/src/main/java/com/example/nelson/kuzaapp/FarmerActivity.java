@@ -49,7 +49,7 @@ public class FarmerActivity extends AppCompatActivity implements View.OnClickLis
 
     private String KEY_IMAGE = "image";
     private String KEY_NAME = "name";
-    private String KEY_UNIT = ""
+    private String KEY_UNIT = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
