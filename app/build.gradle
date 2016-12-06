@@ -6,7 +6,7 @@ android {
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
-        applicationId "com.example.nelson.kuzaapp"
+        applicationId "com.Tosby.FarmManager"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
