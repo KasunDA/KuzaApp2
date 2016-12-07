@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,7 +20,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Hashtable;
@@ -40,16 +38,13 @@ public class FarmerActivity extends AppCompatActivity implements View.OnClickLis
     private EditText Unit;
     private EditText UnitPrice;
     private EditText description;
-
     private Bitmap bitmap;
-
     private int PICK_IMAGE_REQUEST = 1;
-
     private String UPLOAD_URL = "http://bsmartkuza.com/kuzaAppConnect/upload.php";
-
     private String KEY_IMAGE = "image";
     private String KEY_NAME = "name";
     private String KEY_UNIT = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
