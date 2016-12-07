@@ -36,7 +36,7 @@
     <string name="image">Farm Image</string>
     <string name="get_farm_products">Get Farm Products</string>
     <string name="enter_your_location">Enter your location</string>
-    <string name="welcome">Please fill in the form bellow to make an enquiry. Your email and telephone number will only be used to give you response and will not be shared.</string>
+    <string name="welcome">Your email and telephone number will only be used to give you response and will not be shared.</string>
     <string name="enter_your_name">enter_your_name</string>
     <string name="exit">exit</string>
     <string name="farming_type">Select question type</string>

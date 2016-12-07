@@ -140,7 +140,11 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textColor="#000000" />
+        android:textColor="@color/splashback"
+        android:background="@color/colorPrimaryDark"
+        android:layout_below="@+id/editTextQuestion"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
         <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -149,8 +153,12 @@
         android:layout_alignTop="@+id/button"
         android:layout_alignRight="@+id/editTextQuestion"
         android:layout_alignEnd="@+id/editTextQuestion"
-        android:textColor="#000000"
-        android:clickable="true" />
+        android:textColor="@color/splashback"
+        android:clickable="true"
+        android:background="@color/exit"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_below="@+id/editTextQuestion"
+            />
 
 
 </RelativeLayout>

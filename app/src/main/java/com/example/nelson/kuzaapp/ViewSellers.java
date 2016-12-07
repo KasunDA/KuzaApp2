@@ -1,93 +1,79 @@
 package com.example.nelson.kuzaapp;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.os.AsyncTask;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
-
-//import com.squareup.okhttp.OkHttpClient;
-//import com.squareup.okhttp.Request;
-//import com.squareup.okhttp.Response;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
 public class ViewSellers extends AppCompatActivity {
 
     ListView sellersLV;
     List<String> sellersList = new ArrayList<String>();
     List<String> productsList;
-
+    ArrayAdapter<String> sellerslistAdapter;
     // Progress Dialog
     private ProgressDialog pDialog;
-    // Creating JSON Parser object
-    // JSONParseer jParser = new JSONParseer();
-    // ArrayList<HashMap<String, String>> productsList;
+
     // url to get all products list
-    private static String url_get_sellers = "http://bsmartkuza.com/kuzaAppConnect/getSellers.php";
+    private static String url_get_sellers = "http://elearning2.maseno.ac.ke/kuzaAppConnect/getSellers.php";
 
     // JSON Node names
     private final String TAG_SUCCESS = "success";
     private final String TAG_PRODUCTS = "products";
-    private  final String TAG_NAME = "name";
-    private  final String TAG_MOBILE = "mobile";
+    private  final String dbname = "name";
+    private  final String dbmobile = "mobile";
+    private  final String dblocation = "location";
+    private  final String dbprice = "price";
+    private  final String dbproduct = "productname";
 
     // products JSONArray
     JSONArray products = null;
 
     String name;
     String mobile;
-    String email;
+    String price;
     String location;
+    String product;
 
     InputStream is = null;
     //String result = null;
     String line = null;
+
+    String data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_sellers);
 
-        // Hashmap for ListView
+/*
+        name = getIntent().getStringExtra("name");
+        mobile = getIntent().getStringExtra("mobile");
+        email = getIntent().getStringExtra("email");
+        location = getIntent().getStringExtra("location");
+*/
         //productsList = new ArrayList<HashMap<String, String>>();
-        productsList = new ArrayList<String>();
+        productsList= new ArrayList<String>();
         // Loading products in Background Thread
         new LoadAllProducts().execute();
-
         sellersLV=(ListView)findViewById(R.id.sellersListView);
-        //sellersList=productsList;
-        // sellersList.add("demo");
-        ArrayAdapter<String> sellerslistAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,sellersList);
-        sellersLV.setAdapter(sellerslistAdapter);
+
 
     }
 
@@ -101,7 +87,7 @@ public class ViewSellers extends AppCompatActivity {
             pDialog = new ProgressDialog(ViewSellers.this);
             pDialog.setMessage("retrieving products. Please wait...");
             pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
+            pDialog.setCancelable(false);
             pDialog.show();
         }
 
@@ -111,9 +97,10 @@ public class ViewSellers extends AppCompatActivity {
             try {
                 ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
-                // nameValuePairs.add(new BasicNameValuePair("name", ""));
-                // nameValuePairs.add(new BasicNameValuePair("location", ""));
+                nameValuePairs.add(new BasicNameValuePair("name", ""));
+                nameValuePairs.add(new BasicNameValuePair("location", ""));
 
+                // String url = "http://elearning2.maseno.ac.ke/kuzaAppConnect/getSellers.php";
                 String url = "http://bsmartkuza.com/kuzaAppConnect/getSellers.php";
 
                 OkHttpClient client = new OkHttpClient();
@@ -151,26 +138,25 @@ public class ViewSellers extends AppCompatActivity {
                         JSONObject c = products.getJSONObject(i);
 
                         // Storing each json item in variable
-                        name = c.getString(TAG_NAME);
-                        mobile = c.getString(TAG_MOBILE);
+                        name = c.getString(dbname);
+                        mobile = c.getString(dbmobile);
+                        location=c.getString(dblocation);
+                        price=c.getString(dbprice);
+                        product=c.getString(dbproduct);
 
-                        // creating new HashMap
-                      /*  HashMap<String, String> map = new HashMap<String, String>();
+                        data=name+"|"+mobile+"|"+product+"|"+location+"|"+price+"\n";
 
-                        // adding each child node to HashMap key => value
-                        map.put(TAG_NAME, name);
-                        map.put(TAG_MOBILE, mobile);*/
+                        productsList.add(data);
+                        Log.d("RESPONSe for LiST",data);
 
-                        // adding HashList to ArrayList
-                        productsList.add(name+" "+mobile);
                     }
+                    sellerslistAdapter=new ArrayAdapter<String>(ViewSellers.this,android.R.layout.simple_list_item_1,productsList);
+                    sellersLV.setAdapter(sellerslistAdapter);
 
-                    sellersList =productsList;
                 } else {
                     Toast.makeText(getApplicationContext(), "Failed",
                             Toast.LENGTH_LONG).show();
                 }
-
                 //Toast.makeText(ViewSellersActivity.this, s, Toast.LENGTH_SHORT).show();
             }catch(JSONException e){
 
