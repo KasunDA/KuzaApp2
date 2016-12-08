@@ -27,7 +27,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class FarmerActivity extends AppCompatActivity {
-    String farmProduct,unit,unitPrice;
+    String farmProduct,unit,unitPrice,desc,image;
     EditText editTextFarmProduct;
     EditText editTextUnit;
     EditText editTextUnitPrice;
@@ -55,7 +55,6 @@ public class FarmerActivity extends AppCompatActivity {
         imageView = (ImageView)findViewById(R.id.imageView);
         description = (EditText)findViewById(R.id.description);
         buttonAddProduct=(Button)findViewById(R.id.AddProduct);
-
         buttonAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,13 +65,14 @@ public class FarmerActivity extends AppCompatActivity {
         });
 
 
-
     }
-
-    public void GetDataFromEditText(){
+     public void GetDataFromEditText(){
         farmProduct = editTextFarmProduct.getText().toString();
         unit = editTextUnit.getText().toString();
-        unitPrice=editTextUnitPrice.getText().toString();
+        unitPrice = editTextUnitPrice.getText().toString();
+         desc = description.getText().toString();
+    }
+    public void TakePicture(){
 
     }
     class InsertFarmProductData extends AsyncTask<String, Void, String> {
