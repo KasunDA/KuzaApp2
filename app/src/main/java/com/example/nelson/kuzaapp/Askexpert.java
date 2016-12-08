@@ -69,10 +69,13 @@ public class Askexpert extends AppCompatActivity {
         String farmingType=radioButton.getText().toString();
 
         if (farmingType.equalsIgnoreCase("Maize Farming")){
-            expertPhoneNumber="0733717162";
+            expertPhoneNumber="0786856182";
         }
-        else{
-            expertPhoneNumber="0733717162";
+        else if(farmingType.equalsIgnoreCase("Fish Farming")){
+            expertPhoneNumber="0725268627";
+        }
+        else {
+            expertPhoneNumber="0737611425";
         }
         try {
             SmsManager smsManager = SmsManager.getDefault();
