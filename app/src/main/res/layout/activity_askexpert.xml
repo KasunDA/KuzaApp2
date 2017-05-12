@@ -153,6 +153,7 @@
         android:layout_alignTop="@+id/button"
         android:layout_alignRight="@+id/editTextQuestion"
         android:layout_alignEnd="@+id/editTextQuestion"
+            android:layout_alignBottom="@+id/button"
         android:textColor="@color/splashback"
         android:clickable="true"
         android:background="@color/exit"
