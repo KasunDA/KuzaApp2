@@ -16,8 +16,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         Button registerButton=(Button)findViewById(R.id.buttonRegisterFarmer);
         Button farmerLoginButton=(Button)findViewById(R.id.buttonFarmerLogin);
         Button viewProductsButton=(Button)findViewById(R.id.buttonViewProducts);
@@ -28,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(intent);
-                //getOpenFacebookIntent(MainActivity.this);
 
             }
         });
@@ -43,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
         viewProductsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              /*  Intent intent = new Intent(getApplicationContext(), BuyerActivity.class);
-                startActivity(intent);*/
-                Intent intent = new Intent(getApplicationContext(), ViewSellers.class);
+             Intent intent = new Intent(getApplicationContext(), Buyer.class);
                 startActivity(intent);
 
             }
@@ -74,12 +69,10 @@ public class MainActivity extends AppCompatActivity {
         btnFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // this is the intent you actually want.
-                // grabbed this by hooking a debugger up to twitter and debugging into android framework source.
-                // this let me inspect the contents of the intent.
+
                 Intent i = new Intent();
                 i.setClassName("com.twitter.android", "com.twitter.android.ProfileActivity");
-                i.putExtra("screen_name", "netubuli");
+                i.putExtra("screen_name", "User");
                 try {
                     startActivity(i);
                 }
