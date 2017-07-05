@@ -17,7 +17,7 @@ public class Buyer extends AppCompatActivity {
     Spinner spinnerLocation;
     private ArrayAdapter locationAdapter;
     private Button buttonGetProducts;
-    String [] locationItems={"All Areas","Kisumu","Luanda","Maseno"};
+    String [] locationItems={"All Areas","Kisumu","Luanda","Maseno","Awasi","Ahero","Kisii"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

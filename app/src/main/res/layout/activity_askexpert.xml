@@ -153,12 +153,11 @@
         android:layout_alignTop="@+id/button"
         android:layout_alignRight="@+id/editTextQuestion"
         android:layout_alignEnd="@+id/editTextQuestion"
-            android:layout_alignBottom="@+id/button"
+        android:layout_alignBottom="@+id/button"
         android:textColor="@color/splashback"
         android:clickable="true"
         android:background="@color/exit"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_below="@+id/editTextQuestion"
+        android:textAppearance="?android:attr/textAppearanceLarge" android:layout_below="@+id/editTextQuestion"
             />
 
 

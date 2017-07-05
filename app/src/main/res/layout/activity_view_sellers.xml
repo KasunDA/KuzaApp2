@@ -10,9 +10,69 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.nelson.kuzaapp.ViewSellers"
     android:background="@drawable/bg">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/name"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/phonenumber"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/name"
+        android:layout_toEndOf="@+id/name"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/prod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prod"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/tel"
+        android:layout_toEndOf="@+id/tel"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/loc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/location"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/prod"
+        android:layout_toEndOf="@+id/prod"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/ppu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price_per_unit"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/loc"
+        android:layout_toEndOf="@+id/loc"
+        android:layout_marginStart="10dp"
+        android:textStyle="bold"/>
+    </RelativeLayout>
     <ListView
         android:id="@+id/sellersListView"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        tools:clickable="true"
+        android:layout_marginTop="16dp"></ListView>
 </RelativeLayout>

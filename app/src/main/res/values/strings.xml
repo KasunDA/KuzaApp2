@@ -26,7 +26,7 @@
     <string name="phone_number">phone number</string>
     <string name="farmer_login">Farmer Login</string>
     <string name="farmer_registration">Farmer Registration</string>
-    <string name="view_products">View Products</string>
+    <string name="view_products">Go to the market</string>
     <string name="id_number1">Id Number</string>
     <string name="location">Location</string>
     <string name="name">Name</string>
@@ -59,4 +59,8 @@
     <string name="imagetoupload">Image To Upload</string>
     <string name="choose_image">Choose Image</string>
     <string name="select">Take a picture</string>
+    <string name="Seller_name">Seller Name</string>
+    <string name="tel">Tel</string>
+    <string name="prod">Product</string>
+    <string name="ppu">Price/Unit</string>
 </resources>

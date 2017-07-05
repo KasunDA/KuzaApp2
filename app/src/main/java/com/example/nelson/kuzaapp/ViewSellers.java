@@ -38,6 +38,7 @@ public class ViewSellers extends AppCompatActivity {
     private final String TAG_PRODUCTS = "products";
     private  final String dbname = "name";
     private  final String dbmobile = "mobile";
+    //private final String email = "Email";
     private  final String dblocation = "location";
     private  final String dbprice = "price";
     private  final String dbproduct = "productname";
@@ -62,12 +63,12 @@ public class ViewSellers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_sellers);
 
-/*
+
         name = getIntent().getStringExtra("name");
         mobile = getIntent().getStringExtra("mobile");
-        email = getIntent().getStringExtra("email");
+        //email = getIntent().getStringExtra("email");
         location = getIntent().getStringExtra("location");
-*/
+
         //productsList = new ArrayList<HashMap<String, String>>();
         productsList= new ArrayList<String>();
         // Loading products in Background Thread
